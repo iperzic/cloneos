@@ -4,7 +4,7 @@ import {
   Action, ActionType, Operator, State,
 } from './types';
 
-import styles from './App.module.css';
+import styles from './styles.module.css';
 
 export function calculate(value1: number, value2: number, operator: Operator) {
   switch (operator) {
@@ -133,7 +133,7 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-function App() {
+export default function Calculator() {
   const [{ display, allClear }, dispatch] = useReducer(reducer, initialState);
 
   function operate(operator: Operator) {
@@ -188,5 +188,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
