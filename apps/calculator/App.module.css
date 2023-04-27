@@ -1,0 +1,58 @@
+.calculator {
+    width: 220px;
+    color: white;
+    background-color: #5c5751;
+}
+
+.display {
+    display: flex;
+    justify-content: end;
+    padding: 1rem 0.875rem 0.125rem;
+    font-size: 2.5rem;
+    font-family: -apple-system;
+    font-weight: 100;
+}
+
+.keyboard {
+    display: grid;
+    grid-template-areas:
+    "a b c d"
+    "e f g h"
+    "i j k l"
+    "m n o p"
+    "q q r s";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1px;
+}
+
+.button {
+    appearance: none;
+    outline: none;
+    border: none;
+    background-color: #84807d;
+    color: inherit;
+    padding: 0.5rem 0;
+    font-size: 1.25rem;
+}
+
+.button:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.buttonWide {
+    grid-area: q;
+    grid-column: span 2;
+}
+
+.buttonOperator {
+    background-color: #fe9e09;
+    font-size: 1.25rem;
+}
+
+.buttonUtil {
+    background-color: #6c6762;
+    font-size: 1rem;
+}
+
