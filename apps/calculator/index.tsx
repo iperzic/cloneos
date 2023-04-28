@@ -162,22 +162,22 @@ export default function Calculator() {
           : <button type="button" className={classnames(styles.button, styles.buttonUtil)} aria-label="Clear" onClick={() => dispatch({ type: ActionType.CLEAR })}>C</button>}
         <button type="button" className={classnames(styles.button, styles.buttonUtil)} onClick={() => dispatch({ type: ActionType.NEGATE })}>+/-</button>
         <button type="button" className={classnames(styles.button, styles.buttonUtil)} onClick={() => dispatch({ type: ActionType.PERCENT })}>%</button>
-        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.DIVIDE)}>÷</button>
+        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.DIVIDE)}>{Operator.DIVIDE}</button>
 
         <button type="button" className={classnames(styles.button)} onClick={() => input(7)}>7</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(8)}>8</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(9)}>9</button>
-        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.MULTIPLY)}>×</button>
+        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.MULTIPLY)}>{Operator.MULTIPLY}</button>
 
         <button type="button" className={classnames(styles.button)} onClick={() => input(4)}>4</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(5)}>5</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(6)}>6</button>
-        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.SUBTRACT)}>-</button>
+        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.SUBTRACT)}>{Operator.SUBTRACT}</button>
 
         <button type="button" className={classnames(styles.button)} onClick={() => input(1)}>1</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(2)}>2</button>
         <button type="button" className={classnames(styles.button)} onClick={() => input(3)}>3</button>
-        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.ADD)}>+</button>
+        <button type="button" className={classnames(styles.button, styles.buttonOperator)} onClick={() => operate(Operator.ADD)}>{Operator.ADD}</button>
 
         <button type="button" className={classnames(styles.button, styles.buttonWide)} onClick={() => input(0)}>0</button>
         <button type="button" className={classnames(styles.button)} onClick={() => dispatch({ type: ActionType.DECIMAL })}>,</button>

@@ -36,8 +36,8 @@ export type Action =
 export enum Operator {
   ADD = '+',
   SUBTRACT = '-',
-  DIVIDE = '/',
-  MULTIPLY = '*',
+  DIVIDE = '÷',
+  MULTIPLY = '×',
 }
 
 export type State = {
