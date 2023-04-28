@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Calculator should match snapshot 1`] = `
+<div>
+  <div
+    class="calculator"
+  >
+    <div
+      class="display"
+      data-testid="display"
+    >
+      0
+    </div>
+    <div
+      class="keyboard"
+    >
+      <button
+        aria-label="All Clear"
+        class="button buttonUtil"
+        type="button"
+      >
+        AC
+      </button>
+      <button
+        class="button buttonUtil"
+        type="button"
+      >
+        +/-
+      </button>
+      <button
+        class="button buttonUtil"
+        type="button"
+      >
+        %
+      </button>
+      <button
+        class="button buttonOperator"
+        type="button"
+      >
+        ÷
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        7
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        8
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        9
+      </button>
+      <button
+        class="button buttonOperator"
+        type="button"
+      >
+        ×
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        4
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        5
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        6
+      </button>
+      <button
+        class="button buttonOperator"
+        type="button"
+      >
+        -
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        1
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        2
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        3
+      </button>
+      <button
+        class="button buttonOperator"
+        type="button"
+      >
+        +
+      </button>
+      <button
+        class="button buttonWide"
+        type="button"
+      >
+        0
+      </button>
+      <button
+        class="button"
+        type="button"
+      >
+        ,
+      </button>
+      <button
+        class="button buttonOperator"
+        type="button"
+      >
+        =
+      </button>
+    </div>
+  </div>
+</div>
+`;
