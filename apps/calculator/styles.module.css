@@ -1,7 +1,15 @@
 .calculator {
+    --color-background: #5c5751;
+    --color-button: #84807d;
+    --color-buttonOperator: #fe9e09;
+    --color-buttonUtil: #6c6762;
+}
+
+.calculator {
     width: 220px;
+    height: 260px;
     color: white;
-    background-color: #5c5751;
+    background-color: var(--color-background);
 }
 
 .display {
@@ -30,7 +38,7 @@
     appearance: none;
     outline: none;
     border: none;
-    background-color: #84807d;
+    background-color: var(--color-button);
     color: inherit;
     padding: 0.5rem 0;
     font-size: 1.25rem;
@@ -47,12 +55,16 @@
 }
 
 .buttonOperator {
-    background-color: #fe9e09;
+    background-color: var(--color-buttonOperator);
     font-size: 1.25rem;
 }
 
+.buttonOperatorHighlighted {
+    box-shadow: 1px 1px 0 0 var(--color-background) inset, 0 -1px 0 0 var(--color-background) inset;
+}
+
 .buttonUtil {
-    background-color: #6c6762;
+    background-color: var(--color-buttonUtil);
     font-size: 1rem;
 }
 

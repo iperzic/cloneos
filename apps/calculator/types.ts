@@ -49,4 +49,5 @@ export type State = {
   equals: boolean
   display: string
   allClear: boolean
+  highlightedOperator: null | Operator
 };
