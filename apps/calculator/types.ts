@@ -50,4 +50,5 @@ export type State = {
   display: string
   allClear: boolean
   highlightedOperator: null | Operator
+  animationKey: null | string
 };

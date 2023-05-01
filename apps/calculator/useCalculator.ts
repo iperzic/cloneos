@@ -18,6 +18,10 @@ function performCalculation(value1: number, value2: number, operator: Operator) 
   }
 }
 
+function generateAnimationKey(): string {
+  return (Math.random() + 1).toString(36).substring(7);
+}
+
 const initialState: State = {
   lastNumber: null,
   currentNumber: null,
@@ -28,6 +32,7 @@ const initialState: State = {
   display: '0',
   allClear: true,
   highlightedOperator: null,
+  animationKey: null,
 };
 
 function reducer(state: State, action: Action): State {
@@ -41,10 +46,10 @@ function reducer(state: State, action: Action): State {
         equals: false,
         allClear: true,
         display: '0',
-
+        animationKey: generateAnimationKey(),
       };
     case ActionType.ALL_CLEAR:
-      return initialState;
+      return { ...initialState, animationKey: generateAnimationKey() };
     case ActionType.SET_VALUE: {
       const newValue = `${state.currentNumber === null ? action.payload : state.currentNumber + action.payload}`;
       return {
@@ -90,6 +95,7 @@ function reducer(state: State, action: Action): State {
         equals,
         decimal,
         highlightedOperator: action.payload,
+        animationKey: generateAnimationKey(),
       };
     }
     case ActionType.CALCULATE: {
@@ -100,7 +106,13 @@ function reducer(state: State, action: Action): State {
           state.operator,
         );
         return {
-          ...state, result: val, lastNumber: val, display: `${val}`, equals: true, highlightedOperator: null,
+          ...state,
+          result: val,
+          lastNumber: val,
+          display: `${val}`,
+          equals: true,
+          highlightedOperator: null,
+          animationKey: generateAnimationKey(),
         };
       }
       return state;
@@ -117,11 +129,15 @@ function reducer(state: State, action: Action): State {
     case ActionType.PERCENT: {
       if (state.result !== null) {
         const newValue = state.result / 100;
-        return { ...state, display: `${newValue}`, result: newValue };
+        return {
+          ...state, display: `${newValue}`, result: newValue, animationKey: generateAnimationKey(),
+        };
       }
       if (state.currentNumber !== null) {
         const newValue = parseFloat(state.currentNumber) / 100;
-        return { ...state, display: `${newValue}`, currentNumber: `${newValue}` };
+        return {
+          ...state, display: `${newValue}`, currentNumber: `${newValue}`, animationKey: generateAnimationKey(),
+        };
       }
 
       return state;
@@ -129,11 +145,15 @@ function reducer(state: State, action: Action): State {
     case ActionType.NEGATE: {
       if (state.result !== null) {
         const newValue = state.result * -1;
-        return { ...state, display: `${newValue}`, result: newValue };
+        return {
+          ...state, display: `${newValue}`, result: newValue, animationKey: generateAnimationKey(),
+        };
       }
       if (state.currentNumber !== null) {
         const newValue = parseFloat(state.currentNumber) * -1;
-        return { ...state, display: `${newValue}`, currentNumber: `${newValue}` };
+        return {
+          ...state, display: `${newValue}`, currentNumber: `${newValue}`, animationKey: generateAnimationKey(),
+        };
       }
 
       return state;
@@ -143,7 +163,9 @@ function reducer(state: State, action: Action): State {
   }
 }
 export default function useCalculator() {
-  const [{ display, allClear, highlightedOperator }, dispatch] = useReducer(reducer, initialState);
+  const [{
+    display, allClear, highlightedOperator, animationKey,
+  }, dispatch] = useReducer(reducer, initialState);
 
   function operate(operator: Operator) {
     dispatch({ type: ActionType.SET_OPERATOR, payload: operator });
@@ -178,6 +200,7 @@ export default function useCalculator() {
     display,
     allClear,
     highlightedOperator,
+    animationKey,
     operate,
     input,
     clearAll,

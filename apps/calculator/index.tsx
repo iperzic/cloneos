@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import useCalculator from './useCalculator';
 import {
@@ -11,6 +12,7 @@ export default function Calculator() {
     display,
     allClear,
     highlightedOperator,
+    animationKey,
     operate,
     input,
     clearAll,
@@ -20,10 +22,27 @@ export default function Calculator() {
     decimal,
     calculate,
   } = useCalculator();
+  const displayRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (animationKey && displayRef.current?.animate) {
+      displayRef.current.animate(
+        [
+          { opacity: '0' },
+          { opacity: '1' },
+        ],
+        {
+          duration: 70,
+          iterations: 1,
+          easing: 'steps(1)',
+        },
+      );
+    }
+  }, [animationKey]);
 
   return (
     <div className={styles.calculator}>
-      <div className={styles.display} data-testid="display">{display}</div>
+      <div className={styles.display} ref={displayRef} data-testid="display">{display}</div>
       <div className={styles.keyboard}>
         {allClear
           ? (
