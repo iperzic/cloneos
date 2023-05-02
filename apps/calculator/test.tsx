@@ -1,7 +1,27 @@
 import { fireEvent, render } from '@testing-library/react';
 import Calculator from './index';
 
-type ButtonPress = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '0' | '+' | '-' | '×' | '÷' | '=' | 'Clear' | 'All Clear' | ',' | '%' | '+/-';
+type ButtonPress =
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
+  | '0'
+  | '+'
+  | '-'
+  | '×'
+  | '÷'
+  | '='
+  | 'Clear'
+  | 'All Clear'
+  | ','
+  | '%'
+  | '+/-';
 type ButtonPresses = ButtonPress[];
 type ExpectedDisplay = string;
 type TestCase = [ButtonPresses, ExpectedDisplay];
