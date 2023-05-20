@@ -1,0 +1,27 @@
+.notes {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.toolbar {
+}
+
+.content {
+  display: flex;
+  height: 100%;
+}
+
+.sidebar {
+  width: 200px;
+  border-right: 1px solid black;
+}
+
+.editor {
+  flex: 1;
+  padding: 1rem;
+}
+
+.active {
+  color: red;
+}

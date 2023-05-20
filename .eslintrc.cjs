@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'react/jsx-props-no-spreading': 'off'
   },
   ignorePatterns: ['.eslintrc.cjs', '*.config.[jt]s'],
 };
