@@ -83,6 +83,19 @@ const CustomEditor = forwardRef<FormattingHandle, CustomEditorProps>(
             );
           }
         }
+
+        if (event.metaKey) {
+          if (event.key.toLowerCase() === 'b') {
+            event.preventDefault();
+            toggleMark(editor, Mark.BOLD);
+          } else if (event.key.toLowerCase() === 'i') {
+            event.preventDefault();
+            toggleMark(editor, Mark.ITALIC);
+          } else if (event.key.toLowerCase() === 'u') {
+            event.preventDefault();
+            toggleMark(editor, Mark.UNDERLINE);
+          }
+        }
       },
       [editor]
     );
