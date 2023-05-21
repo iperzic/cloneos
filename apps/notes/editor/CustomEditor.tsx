@@ -1,10 +1,4 @@
-import {
-  forwardRef,
-  KeyboardEventHandler,
-  useCallback,
-  useImperativeHandle,
-  useMemo,
-} from 'react';
+import { forwardRef, useCallback, useImperativeHandle, useMemo } from 'react';
 import { createEditor, Editor, Transforms, Element } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
@@ -12,11 +6,11 @@ import { withHistory } from 'slate-history';
 import { Block, Mark } from '@/apps/notes/types';
 import { markRenderer, toggleMark } from '@/apps/notes/editor/Mark';
 import { blockRenderer, toggleBlock } from '@/apps/notes/editor/Element';
+import styles from '@/apps/notes/styles.module.css';
 
+import type { KeyboardEventHandler } from 'react';
 import type { ReactEditor } from 'slate-react';
 import type { Descendant } from 'slate';
-
-import styles from '@/apps/notes/styles.module.css';
 
 type CustomEditorProps = {
   value: Descendant[];

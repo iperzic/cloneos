@@ -21,7 +21,25 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'import/no-extraneous-dependencies': 'off',
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'import/order': [
+      'error',
+      {
+        groups: [
+          ['builtin', 'external'],
+          ['internal', 'parent', 'sibling', 'index', 'unknown'],
+          'type',
+        ],
+        pathGroups: [
+          {
+            pattern: '@/**',
+            group: 'internal',
+          }
+        ],
+        'newlines-between': 'always',
+        pathGroupsExcludedImportTypes: ['type'],
+      },
+    ],
   },
   ignorePatterns: ['.eslintrc.cjs', '*.config.[jt]s'],
 };

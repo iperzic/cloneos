@@ -1,7 +1,10 @@
 import React from 'react';
-import { ReactEditor, RenderLeafProps } from 'slate-react';
+import { ReactEditor } from 'slate-react';
 import { Editor } from 'slate';
+
 import { Mark } from '@/apps/notes/types';
+
+import type { RenderLeafProps } from 'slate-react';
 
 export function isMarkActive(editor: ReactEditor, mark: Mark) {
   const marks = Editor.marks(editor);

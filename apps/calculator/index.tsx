@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import classnames from 'classnames';
+
 import useCalculator from './useCalculator';
 import { Operator } from './types';
-
 import styles from './styles.module.css';
 
 export default function Calculator() {

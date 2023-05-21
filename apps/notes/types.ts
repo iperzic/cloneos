@@ -1,5 +1,6 @@
-import { BaseEditor } from 'slate';
 import { ReactEditor } from 'slate-react';
+
+import type { BaseEditor } from 'slate';
 
 export enum Mark {
   BOLD = 'bold',

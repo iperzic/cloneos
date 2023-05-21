@@ -1,7 +1,9 @@
 import { Editor, Element as SlateElement, Transforms } from 'slate';
-import { ReactEditor, RenderElementProps } from 'slate-react';
+import { ReactEditor } from 'slate-react';
 
 import { Block } from '@/apps/notes/types';
+
+import type { RenderElementProps } from 'slate-react';
 
 const LIST_TYPES = [
   Block.NUMBERED_LIST,
