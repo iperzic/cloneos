@@ -1,14 +1,19 @@
 import { forwardRef, useCallback, useImperativeHandle, useMemo } from 'react';
-import { createEditor, Editor, Transforms, Element } from 'slate';
+import { createEditor } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 
 import { Block, Mark } from '@/apps/notes/types';
 import { markRenderer, toggleMark } from '@/apps/notes/editor/Mark';
 import { blockRenderer, toggleBlock } from '@/apps/notes/editor/Element';
+import {
+  handleElementEnding,
+  handleLists,
+  handleShortcuts,
+} from '@/apps/notes/editor/keydownHandlers';
 import styles from '@/apps/notes/styles.module.css';
 
-import type { KeyboardEventHandler } from 'react';
+import type { KeyboardEvent } from 'react';
 import type { ReactEditor } from 'slate-react';
 import type { Descendant } from 'slate';
 
@@ -52,50 +57,17 @@ const CustomEditor = forwardRef<FormattingHandle, CustomEditorProps>(
       body: () => toggleBlock(editor, Block.PARAGRAPH),
     }));
 
-    const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
-      (event) => {
-        if (event.key === 'Enter') {
-          const { selection } = editor;
-          if (!selection) return;
-
-          const [parentNode] = Editor.parent(editor, selection);
-          if (
-            Element.isElement(parentNode) &&
-            [Block.TITLE, Block.HEADING, Block.SUBHEADING].includes(
-              parentNode.type
-            )
-          ) {
-            event.preventDefault();
-
-            Transforms.move(editor, { edge: 'end' });
-
-            Transforms.insertNodes(
-              editor,
-              {
-                type: Block.PARAGRAPH,
-                children: [{ text: '' }],
-              },
-              {
-                at: editor.selection
-                  ? Editor.after(editor, editor.selection.focus.path)
-                  : undefined,
-              }
-            );
-          }
+    const handleKeyDown = useCallback(
+      (event: KeyboardEvent<HTMLDivElement>) => {
+        if (handleElementEnding(editor, event)) {
+          return;
         }
 
-        if (event.metaKey) {
-          if (event.key.toLowerCase() === 'b') {
-            event.preventDefault();
-            toggleMark(editor, Mark.BOLD);
-          } else if (event.key.toLowerCase() === 'i') {
-            event.preventDefault();
-            toggleMark(editor, Mark.ITALIC);
-          } else if (event.key.toLowerCase() === 'u') {
-            event.preventDefault();
-            toggleMark(editor, Mark.UNDERLINE);
-          }
+        if (handleShortcuts(editor, event)) {
+          return;
         }
+
+        handleLists(editor, event);
       },
       [editor]
     );
