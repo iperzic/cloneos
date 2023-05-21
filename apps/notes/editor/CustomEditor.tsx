@@ -43,19 +43,22 @@ const CustomEditor = forwardRef<FormattingHandle, CustomEditorProps>(
       []
     );
 
-    useImperativeHandle(ref, () => ({
-      bold: () => toggleMark(editor, Mark.BOLD),
-      italic: () => toggleMark(editor, Mark.ITALIC),
-      underline: () => toggleMark(editor, Mark.UNDERLINE),
-      strikethrough: () => toggleMark(editor, Mark.STRIKETHROUGH),
-      title: () => toggleBlock(editor, Block.TITLE),
-      heading: () => toggleBlock(editor, Block.HEADING),
-      subHeading: () => toggleBlock(editor, Block.SUBHEADING),
-      bulletedList: () => toggleBlock(editor, Block.BULLETED_LIST),
-      numberedList: () => toggleBlock(editor, Block.NUMBERED_LIST),
-      dashedList: () => toggleBlock(editor, Block.DASHED_LIST),
-      body: () => toggleBlock(editor, Block.PARAGRAPH),
-    }));
+    useImperativeHandle(
+      ref,
+      (): FormattingHandle => ({
+        bold: () => toggleMark(editor, Mark.BOLD),
+        italic: () => toggleMark(editor, Mark.ITALIC),
+        underline: () => toggleMark(editor, Mark.UNDERLINE),
+        strikethrough: () => toggleMark(editor, Mark.STRIKETHROUGH),
+        title: () => toggleBlock(editor, Block.TITLE),
+        heading: () => toggleBlock(editor, Block.HEADING),
+        subHeading: () => toggleBlock(editor, Block.SUBHEADING),
+        bulletedList: () => toggleBlock(editor, Block.BULLETED_LIST),
+        numberedList: () => toggleBlock(editor, Block.NUMBERED_LIST),
+        dashedList: () => toggleBlock(editor, Block.DASHED_LIST),
+        body: () => toggleBlock(editor, Block.PARAGRAPH),
+      })
+    );
 
     const handleKeyDown = useCallback(
       (event: KeyboardEvent<HTMLDivElement>) => {

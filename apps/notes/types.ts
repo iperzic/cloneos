@@ -1,5 +1,4 @@
-import { ReactEditor } from 'slate-react';
-
+import type { ReactEditor } from 'slate-react';
 import type { BaseEditor } from 'slate';
 
 export enum Mark {

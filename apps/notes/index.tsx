@@ -1,12 +1,11 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 
 import { Block } from '@/apps/notes/types';
-import CustomEditor, {
-  FormattingHandle,
-} from '@/apps/notes/editor/CustomEditor';
+import CustomEditor from '@/apps/notes/editor/CustomEditor';
 import styles from './styles.module.css';
 
 import type { Descendant } from 'slate';
+import type { FormattingHandle } from '@/apps/notes/editor/CustomEditor';
 
 export default function Notes() {
   const [value, setValue] = useState<Descendant[]>([
