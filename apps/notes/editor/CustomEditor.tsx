@@ -1,12 +1,20 @@
-import React, { forwardRef, useImperativeHandle, useMemo } from 'react';
-import { createEditor, Descendant } from 'slate';
-import type { ReactEditor } from 'slate-react';
+import {
+  forwardRef,
+  KeyboardEventHandler,
+  useCallback,
+  useImperativeHandle,
+  useMemo,
+} from 'react';
+import { createEditor, Editor, Transforms, Element } from 'slate';
 import { Editable, Slate, withReact } from 'slate-react';
 import { withHistory } from 'slate-history';
 
 import { Block, Mark } from '@/apps/notes/types';
 import { markRenderer, toggleMark } from '@/apps/notes/editor/Mark';
 import { blockRenderer, toggleBlock } from '@/apps/notes/editor/Element';
+
+import type { ReactEditor } from 'slate-react';
+import type { Descendant } from 'slate';
 
 import styles from '@/apps/notes/styles.module.css';
 
@@ -50,12 +58,48 @@ const CustomEditor = forwardRef<FormattingHandle, CustomEditorProps>(
       body: () => toggleBlock(editor, Block.PARAGRAPH),
     }));
 
+    const handleKeyDown = useCallback<KeyboardEventHandler<HTMLDivElement>>(
+      (event) => {
+        if (event.key === 'Enter') {
+          const { selection } = editor;
+          if (!selection) return;
+
+          const [parentNode] = Editor.parent(editor, selection);
+          if (
+            Element.isElement(parentNode) &&
+            [Block.TITLE, Block.HEADING, Block.SUBHEADING].includes(
+              parentNode.type
+            )
+          ) {
+            event.preventDefault();
+
+            Transforms.move(editor, { edge: 'end' });
+
+            Transforms.insertNodes(
+              editor,
+              {
+                type: Block.PARAGRAPH,
+                children: [{ text: '' }],
+              },
+              {
+                at: editor.selection
+                  ? Editor.after(editor, editor.selection.focus.path)
+                  : undefined,
+              }
+            );
+          }
+        }
+      },
+      [editor]
+    );
+
     return (
       <Slate editor={editor} value={value} onChange={onChange}>
         <Editable
           renderLeaf={markRenderer}
           renderElement={blockRenderer}
           className={styles.editor}
+          onKeyDown={handleKeyDown}
         />
       </Slate>
     );

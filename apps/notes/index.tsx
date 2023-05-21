@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { Descendant } from 'slate';
 
 import { Block } from '@/apps/notes/types';
 import CustomEditor, {
   FormattingHandle,
 } from '@/apps/notes/editor/CustomEditor';
+
+import type { Descendant } from 'slate';
 
 import styles from './styles.module.css';
 
@@ -32,6 +33,9 @@ export default function Notes() {
         </button>
         <button type="button" onClick={editor.current?.strikethrough}>
           Strikethrough
+        </button>
+        <button type="button" onClick={editor.current?.title}>
+          Title
         </button>
       </div>
       <div className={styles.content}>
