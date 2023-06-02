@@ -52,3 +52,6 @@ dist-ssr
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# storybook
+/storybook-static
